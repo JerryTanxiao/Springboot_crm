@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.RoleMapper">
+
+    <select id="findRolesByUid" resultType="com.vo.PublicVo">
+        select r.rname name,r.rval val
+        from sys_role r,sys_user_role ur
+        where ur.user_id = #{uid}
+        and r.rid = ur.role_id
+    </select>
+</mapper>
