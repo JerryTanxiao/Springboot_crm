@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.PermMapper">
+
+    <update id="updatePerm">
+      update sys_perm set pval=#{pval},parent=#{parent},
+      pname=#{pname},ptype=#{ptype},leaf=#{leaf},created=#{created},updated=#{updated}
+    </update>
+
+
+    <select id="findPermsByLikePname" resultType="com.vo.PublicVo">
+        select pname name,pval val,ptype other
+        from sys_perm
+        where pname like "%".concat(#{pname}).concat.(%)
+    </select>
+
+    <select id="findPermsByLikePval" resultType="com.vo.PublicVo">
+        select pname name,pval val,ptype other
+        from sys_perm
+        where pname like "%".concat(#{pval}).concat.(%)
+    </select>
+
+    <select id="getPermsByUid" resultType="com.vo.PublicVo">
+         select p.pname name,p.pval val,p.ptype other
+         from sys_perm p,sys_user_role ur,sys_rloe_perm rm
+         where ur.user_id = #{uid} and ur.role_id = rm.role_id
+         and rm.perm_val = p.pval
+    </select>
+
+    <select id="getPermsByRid" resultType="com.vo.PublicVo">
+        select p.pname name,p.pval val,p.ptype other
+         from sys_perm p ,sys_rloe_perm rm
+         where rm.role_id = #{rid}
+         and rm.perm_val = p.pval
+    </select>
+</mapper>
