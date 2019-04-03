@@ -18,7 +18,6 @@ import java.util.List;
  */
 @Service
 public class WorkPlanServiceImpl extends ServiceImpl<WorkPlanMapper, WorkPlan> implements WorkPlanService {
-    private Logger logger = LoggerFactory.getLogger(WorkPlanServiceImpl.class);
     @Override
     public IPage<WorkPlan> getWorkMessage() {
         Page<WorkPlan> page = new Page<WorkPlan>();
