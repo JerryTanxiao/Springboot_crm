@@ -12,5 +12,5 @@ import java.util.List;
  * 工作计划service接口
  */
 public interface WorkPlanService extends IService<WorkPlan> {
-    IPage<WorkPlan> getWorkMessage();
+    IPage<WorkPlan> getWorkMessage(Long current,Long size);
 }
