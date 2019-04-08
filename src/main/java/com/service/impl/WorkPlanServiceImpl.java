@@ -19,10 +19,14 @@ import java.util.List;
 @Service
 public class WorkPlanServiceImpl extends ServiceImpl<WorkPlanMapper, WorkPlan> implements WorkPlanService {
     @Override
-    public IPage<WorkPlan> getWorkMessage() {
+    public IPage<WorkPlan> getWorkMessage(Long current,Long size) {
+        if(current==null)
+            current=1L;
+        if(size==null)
+            size=5L;
         Page<WorkPlan> page = new Page<WorkPlan>();
-        page.setCurrent(1);
-        page.setSize(2);
+        page.setCurrent(current);
+        page.setSize(size);
         return baseMapper.getWorkMessage(page);
     }
 }

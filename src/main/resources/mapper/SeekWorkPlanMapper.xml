@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.SeekWorkPlanMapper">
+    <select id="getSeekWorkPlanMessage" resultType="com.pojo.WorkPlan">
+      select <include refid="work_message"/>
+      from (select <include refid="work_user_message"/> from sys_user where nick LIKE concat("%",#{seekName},"%") or created BETWEEN #{startTime} and #{endTime}) as s,sys_user_message as m
+      where s.uid=m.uid
+    </select>
+    <sql id="work_message">
+        s.uid,s.nick,m.usex,m.utel,s.email,m.ustatus,s.created,m.uadd
+    </sql>
+    <sql id="work_user_message">
+        uid,nick,email,created
+    </sql>
+</mapper>
