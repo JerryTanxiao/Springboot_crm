@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper">
+    <select id="getUserByUname" resultType="com.pojo.SysUser">
+        select <include refid="UserCloumns"/>
+        from sys_user
+        where uname=#{uname}
+    </select>
+    <sql id="UserCloumns">
+        uid,uname,pwd,salt,nick,updated,created,locked,email,head_portrait
+    </sql>
+</mapper>
